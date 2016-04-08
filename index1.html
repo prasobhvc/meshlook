@@ -36,7 +36,7 @@
         
     </head>
     
-    <body>
+    <body ng-app="MainApp">
         <section id="container">
             
             <!-- *************************************************************************************************************************************TOP BAR CONTENT & NOTIFICATIONS            ************************************************************************************************************************************* -->
@@ -168,45 +168,16 @@
             <!-- *************************************************************************************************************************************MAIN SIDEBAR MENU            *************************************************************************************************************************************-->
             <!--sidebar start-->
 
-            <aside>
-                <div ng-app class="nav-collapse " id="sidebar" ng-init="nav_items=[
-                    {'name':'Dashboard', 'submenu': [ 
-                            {name:'Home', file:'index1.html'}
-                    ]},
-                    {'name':'UI Elements', 'submenu': [ 
-                            {name:'General', file:'general.html'}, 
-                            {name:'Buttons', file:'buttons.html'}, 
-                            {name:'Panels',  file:'panels.html'}
-                    ]}, 
-                    {'name':'Components', 'submenu': [ 
-                            {name:'Calendar',  file:'calendar.html'}, 
-                            {name:'Gallery',   file:'gallery.html'}, 
-                            {name:'Todo List', file:'todo_list.html'}
-                    ]},
-                    {'name':'Extra Pages', 'submenu': [ 
-                            {name:'Blank Page', file:'blank.html'}, 
-                            {name:'Login', file:'login.html'}, 
-                            {name:'Lock Screen', file:'lock_screen.html'}
-                    ]},
-                    {'name':'Froms', 'submenu': [ 
-                            {name:'Form Components', file:'form_component.html'}
-                    ] },
-                    {'name':'Data Tables', 'submenu': [ 
-                            {name:'Basic Table', file:'basic_table.html'}, 
-                            {name:'Responsive Table', file:'responsive_table.html'}
-                    ]},
-                    {'name':'Charts', 'submenu': [ 
-                            {name:'Morris', file:'morris.html'}, 
-                            {name:'Chartjs', file:'chartjs.html'}
-                    ]}
-                ]">
+            <aside ng-controller="menuController">
+                <div class="nav-collapse " id="sidebar" ng-init="nav_items = {{menu.getMenu()}}">
 
-                    <!-- sidebar menu start-->
+                    <!-- sidebar menu start-->  
                     <p  class="centered"><a href="profile.html"><img class="img-circle" src="assets/img/ui-sam.jpg" width="60" /></a></p>
 
                     <h5 class="centered">Marcel Newman</h5>
                     <ul class="sidebar-menu" id="nav-accordion">
                         <li ng-repeat="nav_item in nav_items" class="sub-menu">
+                            <a href="index1.html"><span>{{nav_item.name}}</span> </a>
                             <div ng-if="nav_item.name == 'Dashboard'">
                                 <a href="index1.html"><span>{{nav_item.name}}</span> </a>
                             </div>
@@ -218,6 +189,7 @@
                             </ul>
                         </li>
                     </ul>
+                    
                     <!--
                     <ul class="sidebar-menu" id="nav-accordion">
 
